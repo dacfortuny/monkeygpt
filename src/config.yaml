@@ -1,0 +1,5 @@
+PATH_TO_PROMPT_GAME_OVERVIEW: resources/prompts/game_overview.txt
+PATH_TO_PROMPT_GENERATE_PIRATE_TYPES: resources/prompts/generate_pirate_types.txt
+PATH_TO_PIRATE_TYPES_ORIGINAL: resources/data/pirate_types_original.txt
+PATH_TO_PIRATE_TYPES_GENERATED: resources/data/pirate_types_generated.txt
+PATH_TO_INSULTS: resources/data/insults.csv

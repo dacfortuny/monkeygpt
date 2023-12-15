@@ -1,0 +1,1 @@
+The original pirate oponents who fight against Guybrush Threepwood are: {pirate_types}.\nWrite a list of {n} new pirate types that would fit in the game. All of names should end with Pirate, ending up looking something like "<whatever> Pirate".
