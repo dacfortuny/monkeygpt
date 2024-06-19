@@ -10,12 +10,9 @@ class Assault:
     def __init__(self, insult, answer):
         self.insult = insult.insult
         self.answer = answer.answer
-        self.success = False
+        self.successful_insult = False
 
-    def get_success(self):
-        return self.success
-
-    def evaluate_success(self):
+    def evaluate_insult_success(self):
         text_generator = MistralTextGenerator()
 
         prompt = Prompt()
@@ -40,9 +37,9 @@ class Assault:
             "\nFollowing these examples, assess weather the following insult-answer pair is succesful or not. Return ONLY 'Yes' or 'No':")
         prompt.add_sentence(f"\nInsult: {self.insult} / Answer: {self.answer} / Success: ")
 
-        response = text_generator.generate_text(prompt.get_prompt())
+        response = text_generator.generate_text(prompt.prompt)
 
         if response.lower().strip() == "yes":
-            self.success = True
+            self.successful_insult = True
 
-        return self.success
+        return self.successful_insult

@@ -16,12 +16,12 @@ class AnswerUser(Answer):
 
 
 class AnswerPirate(Answer):
-    def __init__(self, insult, is_successful):
+    def __init__(self, insult, is_valid):
         super().__init__(insult)
-        self.answer = self._generate_answer(is_successful)
+        self.answer = self._generate_answer(is_valid)
 
-    def _generate_answer(self, is_successful):
-        if is_successful:
+    def _generate_answer(self, is_valid):
+        if is_valid:
             insult = self.insult.insult
         else:
             insult = Insult().insult

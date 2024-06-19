@@ -11,18 +11,18 @@ warnings.filterwarnings("ignore")
 
 
 class Game():
-    POINTS_WIN = 3
+    POINTS_TO_WIN = 3
 
     def __init__(self, name=None):
         self.user = User(name)
         self.pirate = Pirate()
-        self.user_first = False
+        self.user_turn = False
 
     def play(self):
         print(f"\nNEW BATTLE: {self.user.name} vs. {self.pirate.name}")
 
-        while (self.user.score < Game.POINTS_WIN) & (self.pirate.score < Game.POINTS_WIN):
-            if self.user_first:
+        while (self.user.score < Game.POINTS_TO_WIN) & (self.pirate.score < Game.POINTS_TO_WIN):
+            if self.user_turn:
                 insult = Insult(input('\nWrite your insult.\n'))
                 is_successful_answer = random.getrandbits(1)
                 answer = AnswerPirate(insult, is_successful_answer)
@@ -32,24 +32,24 @@ class Game():
                     self.user.score = self.user.score + 1
                 else:
                     print(f"\nNon successful insult!\n")
-                    self.user_first = not self.user_first
+                    self.user_turn = not self.user_turn
 
             else:
                 insult = Insult()
                 print(f"\n{self.pirate.name}: {insult.insult}")
                 answer = AnswerUser(insult)
                 assault = Assault(insult, answer)
-                is_successful_answer = assault.evaluate_success()
+                is_successful_answer = assault.evaluate_insult_success()
                 if not is_successful_answer:
                     print(f"\nSuccessful insult!\n")
                     self.pirate.score = self.pirate.score + 1
                 else:
                     print(f"\nNon successful insult!\n")
-                    self.user_first = not self.user_first
+                    self.user_turn = not self.user_turn
 
             self.print_score()
 
-        if self.user.score == Game.POINTS_WIN:
+        if self.user.score == Game.POINTS_TO_WIN:
             print("\nCONGRATULATIONS, YOU WON!\n")
         else:
             print("\nYOU LOSE, TRY AGAIN!\n")

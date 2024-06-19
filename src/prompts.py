@@ -9,9 +9,6 @@ class Prompt:
     def add_sentence(self, sentence):
         self.prompt = f"{self.prompt} {sentence}"
 
-    def get_prompt(self):
-        return self.prompt
-
 
 def prompt_for_pirate_types_generator(n=50):
     prompt = Prompt()

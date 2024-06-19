@@ -10,21 +10,13 @@ class Insult:
     def __init__(self, text_input=None):
         self.insult = text_input or self._generate_insult()
 
-    def get_insult(self):
-        return self.insult
-
     def _generate_insult(self):
         text_generator = MistralTextGenerator()
-
         prompt = Prompt()
-
         prompt.add_sentence("\nHere you have examples of the insults used in the game:\n-")
-
         insults = get_insults()["insult"].tolist()
         shuffle(insults)
         prompt.add_sentence("\n- ".join(insults))
-
         prompt.add_sentence(
             "\nBased on this, generate ONE new insult that could fit in the game. Return ONLY the generated insult.")
-
-        return text_generator.generate_text(prompt.get_prompt())
+        return text_generator.generate_text(prompt.prompt)
