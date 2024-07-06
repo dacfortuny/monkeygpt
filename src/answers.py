@@ -1,10 +1,10 @@
 from src.insult import Insult
-from src.prompts import Prompt
 from src.mistral_text_generator import MistralTextGenerator
+from src.prompts import Prompt
 from src.utils import get_insults
 
 
-class Answer():
+class Answer:
     def __init__(self, insult):
         self.insult = insult
 
@@ -12,7 +12,7 @@ class Answer():
 class AnswerUser(Answer):
     def __init__(self, insult):
         super().__init__(insult)
-        self.answer = input('Write your answer.\n')
+        self.answer = input("Write your answer.\n")
 
 
 class AnswerPirate(Answer):
@@ -27,9 +27,17 @@ class AnswerPirate(Answer):
             insult = Insult().insult
         text_generator = MistralTextGenerator()
         prompt = Prompt()
-        prompt.add_sentence("\n\nHere you have examples of the insults used in the game and SUCCESSFUL answers:")
+        prompt.add_sentence(
+            "\n\nHere you have examples of the insults used in the game and SUCCESSFUL answers:"
+        )
         insults = get_insults().sample(frac=1).reset_index(drop=True)
-        insults["sentence"] = "\nInsult: " + insults["insult"] + "\nSUCCESSFUL answer: " + insults["answer"] + "\n"
+        insults["sentence"] = (
+            "\nInsult: "
+            + insults["insult"]
+            + "\nSUCCESSFUL answer: "
+            + insults["answer"]
+            + "\n"
+        )
         prompt.add_sentence(f"\n{''.join(insults['sentence'])}")
         prompt.add_sentence(f"\nGenerate a SUCCESSFUL for the following insult:\n")
         prompt.add_sentence(f"\nInsult: {insult}\nSUCCESSFUL answer: ")
