@@ -32,11 +32,8 @@ class AnswerPirate(Answer):
         )
         insults = get_insults().sample(frac=1).reset_index(drop=True)
         insults["sentence"] = (
-            "\nInsult: "
-            + insults["insult"]
-            + "\nSUCCESSFUL answer: "
-            + insults["answer"]
-            + "\n"
+            f"\nInsult: {insults['insult']}"
+            f"\nSUCCESSFUL answer: {insults['answer']}\n"
         )
         prompt.add_sentence(f"\n{''.join(insults['sentence'])}")
         prompt.add_sentence(f"\nGenerate a SUCCESSFUL for the following insult:\n")
