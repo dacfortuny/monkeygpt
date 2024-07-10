@@ -1,8 +1,8 @@
 import csv
-import pandas as pd
-
-from omegaconf import OmegaConf
 from random import sample
+
+import pandas as pd
+from omegaconf import OmegaConf
 
 PATH_TO_CONF = "src/config.yaml"
 PATH_TO_API_KEY = "api_key.yaml"

@@ -12,7 +12,9 @@ class MistralTextGenerator:
         self.client = MistralClient(api_key=MistralTextGenerator.API_KEY)
 
     def _call_mistral(self, prompt):
-        return self.client.chat(model=self.model, messages=[ChatMessage(role="user", content=prompt)])
+        return self.client.chat(
+            model=self.model, messages=[ChatMessage(role="user", content=prompt)]
+        )
 
     def generate_text(self, prompt):
         response = self._call_mistral(prompt)
