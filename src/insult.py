@@ -20,6 +20,7 @@ class Insult:
         shuffle(insults)
         prompt.add_sentence("\n- ".join(insults))
         prompt.add_sentence(
-            "\nBased on this, generate ONE new insult that could fit in the game. Return ONLY the generated insult."
+            "\nBased on this, generate ONE new insult that could fit in the game. "
+            "Return ONLY the generated insult."
         )
         return text_generator.generate_text(prompt.prompt)

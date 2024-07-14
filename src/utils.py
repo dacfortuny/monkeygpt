@@ -24,8 +24,7 @@ def read_txt_file(path_to_file, as_list=False):
     with open(path_to_file) as file:
         if not as_list:
             return file.read()
-        else:
-            return file.read().splitlines()
+        return file.read().splitlines()
 
 
 def csv_to_list_of_tuples(path_to_file):

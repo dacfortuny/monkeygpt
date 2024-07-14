@@ -18,13 +18,15 @@ class Assault:
         prompt = Prompt()
 
         prompt.add_sentence(
-            "\nHere you have examples of insults and answers and whether the insult was successful or not:\n-"
+            "\nHere you have examples of insults and answers "
+            "and whether the insult was successful or not:\n-"
         )
 
         insults = get_insults().sample(frac=1).reset_index(drop=True)
         insults_good = insults[: int(len(insults) / 2)]
         insults_good["sentence"] = insults_good.apply(
-            lambda row: f"EXAMPLE>> Insult: {row['insult']} / Answer: {row['answer']} / Success: Yes",
+            lambda row: f"EXAMPLE>> Insult: {row['insult']} / "
+            f"Answer: {row['answer']} / Success: Yes",
             axis=1,
         )
         insults_bad = insults[int(len(insults) / 2) :]
@@ -33,7 +35,8 @@ class Assault:
             insults_bad.iloc[-1, insults_bad.columns.get_loc("answer")]
         )
         insults_bad["sentence"] = insults_bad.apply(
-            lambda row: f"EXAMPLE>> Insult: {row['insult']} / Answer: {row['answer_shifted']} / Success: No",
+            lambda row: f"EXAMPLE>> Insult: {row['insult']} / "
+            f"Answer: {row['answer_shifted']} / Success: No",
             axis=1,
         )
         insults = (
@@ -42,7 +45,8 @@ class Assault:
 
         prompt.add_sentence("\n- ".join(insults["sentence"].tolist()))
         prompt.add_sentence(
-            "\nFollowing these examples, assess whether the following insult-answer pair is succesful or not. Return ONLY 'Yes' or 'No':"
+            "\nFollowing these examples, assess whether the following insult-answer "
+            "pair is succesful or not. Return ONLY 'Yes' or 'No':"
         )
         prompt.add_sentence(
             f"\nInsult: {self.insult} / Answer: {self.answer} / Success: "

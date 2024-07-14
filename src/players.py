@@ -43,9 +43,9 @@ class Pirate(Player):
         return random.choice(pirate_types)
 
 
-def get_pirate_types(
-    subsets: list[str] = ["original"], as_string: bool = False, seed: int = 31
-):
+def get_pirate_types(subsets=None, as_string=False, seed=31):
+    if subsets is None:
+        subsets = ["original"]
     paths = load_conf()
     pirate_types = []
     if "original" in subsets:
@@ -61,5 +61,5 @@ def get_pirate_types(
     random.shuffle(pirate_types)
     if as_string:
         return ", ".join(pirate_types)
-    else:
-        return pirate_types
+
+    return pirate_types

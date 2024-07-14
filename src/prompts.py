@@ -6,11 +6,11 @@ class Prompt:
     def __init__(self):
         self.prompt = get_game_overview()
 
-    def add_sentence(self, sentence):
+    def add_sentence(self, sentence: str):
         self.prompt = f"{self.prompt} {sentence}"
 
 
-def prompt_for_pirate_types_generator(n=50):
+def prompt_for_pirate_types_generator(n: int = 50):
     prompt = Prompt()
     pirate_types = get_pirate_types(subsets=["original"], as_string=True)
     sentence = read_txt_file(
@@ -20,7 +20,7 @@ def prompt_for_pirate_types_generator(n=50):
     return prompt.prompt
 
 
-def prompt_for_insult_generator():
+def prompt_for_insult_generator(n: int=50):
     prompt = Prompt()
     pirate_types = get_pirate_types(subsets=["original"], as_string=True)
     sentence = read_txt_file(
