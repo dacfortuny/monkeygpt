@@ -1,11 +1,11 @@
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 
-from src.utils import get_api_key
+from src.utils import get_mistral_api_key
 
 
 class MistralTextGenerator:
-    API_KEY = get_api_key()
+    API_KEY = get_mistral_api_key()
 
     def __init__(self, model="open-mistral-7b"):
         self.model = model
