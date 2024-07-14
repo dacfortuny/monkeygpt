@@ -12,8 +12,12 @@ def load_conf(path_to_conf=PATH_TO_CONF):
     return OmegaConf.load(path_to_conf)
 
 
-def get_api_key(path_to_api_key=PATH_TO_API_KEY):
-    return OmegaConf.load(path_to_api_key)["API_KEY"]
+def get_mistral_api_key(path_to_api_key=PATH_TO_API_KEY):
+    return OmegaConf.load(path_to_api_key)["MISTRAL_API_KEY"]
+
+
+def get_telegram_api_key(path_to_api_key=PATH_TO_API_KEY):
+    return OmegaConf.load(path_to_api_key)["TELEGRAM_API_KEY"]
 
 
 def read_txt_file(path_to_file, as_list=False):
