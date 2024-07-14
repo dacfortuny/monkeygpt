@@ -1,6 +1,7 @@
 import random
 from dataclasses import dataclass
 from enum import StrEnum
+from typing import Optional
 
 from src.utils import load_conf, read_txt_file
 
@@ -18,7 +19,7 @@ class Player:
 
 
 class User(Player):
-    def __init__(self, name: str):
+    def __init__(self, name: Optional[str]):
         if name is None:
             name = input("Write your name.\n")
         super().__init__(kind=PlayerType.USER, name=name)
