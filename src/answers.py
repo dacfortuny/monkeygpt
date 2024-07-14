@@ -36,6 +36,6 @@ class AnswerPirate(Answer):
             f"\nSUCCESSFUL answer: {insults['answer']}\n"
         )
         prompt.add_sentence(f"\n{''.join(insults['sentence'])}")
-        prompt.add_sentence(f"\nGenerate a SUCCESSFUL for the following insult:\n")
+        prompt.add_sentence("\nGenerate a SUCCESSFUL for the following insult:\n")
         prompt.add_sentence(f"\nInsult: {insult}\nSUCCESSFUL answer: ")
         return text_generator.generate_text(prompt.prompt)
