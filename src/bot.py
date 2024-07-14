@@ -45,7 +45,7 @@ class MonkeyBot:
             text="Sorry, I don't understand that command. Use /help to see what I can do.",
         )
 
-    def run_bot(self):
+    def run(self):
         application = ApplicationBuilder().token(self.API_KEY).build()
 
         help_handler = CommandHandler("help", self._help)
