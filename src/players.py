@@ -1,30 +1,35 @@
 import random
+from dataclasses import dataclass
+from enum import StrEnum
 
 from src.utils import load_conf, read_txt_file
 
 
+class PlayerType(StrEnum):
+    USER = "user"
+    PIRATE = "pirate"
+
+
+@dataclass
 class Player:
-    def __init__(self, name=None, type=None):
-        self.name = name
-        self.type = type
-        self.score = 0
+    kind: PlayerType
+    name: str
+    score: int = 0
 
 
 class User(Player):
-    def __init__(self, name):
+    def __init__(self, name: str):
         if name is None:
-            self.name = input("Write your name.\n")
-        else:
-            self.name = name
-        super().__init__(self.name, type="user")
+            name = input("Write your name.\n")
+        super().__init__(kind=PlayerType.USER, name=name)
 
 
 class Pirate(Player):
     def __init__(self):
-        self.name = self._get_random_pirate_name()
-        super().__init__(name=self.name, type="pirate")
+        super().__init__(kind=PlayerType.PIRATE, name=self._get_random_pirate_name())
 
-    def _get_random_pirate_name(self):
+    @staticmethod
+    def _get_random_pirate_name() -> str:
         paths = load_conf()
         pirate_types = read_txt_file(
             paths["PATH_TO_PIRATE_TYPES_ORIGINAL"], as_list=True
@@ -37,7 +42,9 @@ class Pirate(Player):
         return random.choice(pirate_types)
 
 
-def get_pirate_types(subsets=["original"], as_string=False, seed=31):
+def get_pirate_types(
+    subsets: list[str] = ["original"], as_string: bool = False, seed: int = 31
+):
     paths = load_conf()
     pirate_types = []
     if "original" in subsets:
