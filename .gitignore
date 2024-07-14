@@ -13,3 +13,6 @@ __pycache__/
 
 # Mac
 .DS_Store
+
+# API key file
+api_key.yaml
