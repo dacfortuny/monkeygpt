@@ -1,6 +1,6 @@
 import random
 from dataclasses import dataclass
-from enum import StrEnum
+from strenum import StrEnum
 from typing import Optional
 
 from src.utils import load_conf, read_txt_file
