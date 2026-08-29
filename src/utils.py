@@ -48,8 +48,15 @@ def get_game_overview():
 
 @lru_cache(maxsize=1)
 def get_insults():
-    path_to_insults = load_conf()["PATH_TO_INSULTS"]
-    return pd.read_csv(path_to_insults, sep="|")
+    paths_to_insults = load_conf()["PATH_TO_INSULTS"]
+    insults = pd.concat(
+        (pd.read_csv(path, sep="|") for path in paths_to_insults), ignore_index=True
+    )
+    return insults.drop_duplicates(subset="insult", keep="first").reset_index(drop=True)
+
+
+def get_insult_cache_path():
+    return load_conf()["PATH_TO_INSULT_CACHE"]
 
 
 def get_list_of_insults(n):

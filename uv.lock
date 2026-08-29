@@ -1466,7 +1466,7 @@ dependencies = [
     { name = "terminado", marker = "python_full_version < '3.10'" },
     { name = "tornado", marker = "python_full_version < '3.10'" },
     { name = "traitlets", version = "5.15.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "websocket-client", marker = "python_full_version < '3.10'" },
+    { name = "websocket-client", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ca/15/1eacb0fcb79ef86e8a0a79a708e6ad7435f6f223097dd29a4ce861fabc44/jupyter_server-2.18.2.tar.gz", hash = "sha256:06b4f40d8a7a00bb39d5216859c81374a0e7cfefe6d8a5a7facc5a5c37c679a7", size = 753177, upload-time = "2026-05-06T07:04:36.274Z" }
 wheels = [
@@ -1502,7 +1502,7 @@ dependencies = [
     { name = "terminado", marker = "python_full_version >= '3.10'" },
     { name = "tornado", marker = "python_full_version >= '3.10'" },
     { name = "traitlets", version = "5.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
-    { name = "websocket-client", marker = "python_full_version >= '3.10'" },
+    { name = "websocket-client", version = "1.9.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/cf/e0/63b481d5b21f81fe23173dfc9eb25629fa1bc174fdc4a2c19d09c1ff8124/jupyter_server-2.21.0.tar.gz", hash = "sha256:70d9a1883f57d3576ea17f4ce061ec1a7aad7ef388d00428cfb7f5e4f0022271", size = 760357, upload-time = "2026-08-27T16:06:34.049Z" }
 wheels = [
@@ -4312,9 +4312,27 @@ wheels = [
 name = "websocket-client"
 version = "1.9.0"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.10'",
+]
 sdist = { url = "https://files.pythonhosted.org/packages/2c/41/aa4bf9664e4cda14c3b39865b12251e8e7d239f4cd0e3cc1b6c2ccde25c1/websocket_client-1.9.0.tar.gz", hash = "sha256:9e813624b6eb619999a97dc7958469217c3176312b3a16a4bd1bc7e08a46ec98", size = 70576, upload-time = "2025-10-07T21:16:36.495Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/34/db/b10e48aa8fff7407e67470363eac595018441cf32d5e1001567a7aeba5d2/websocket_client-1.9.0-py3-none-any.whl", hash = "sha256:af248a825037ef591efbf6ed20cc5faa03d3b47b9e5a2230a529eeee1c1fc3ef", size = 82616, upload-time = "2025-10-07T21:16:34.951Z" },
+]
+
+[[package]]
+name = "websocket-client"
+version = "1.9.1"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.14'",
+    "python_full_version >= '3.12' and python_full_version < '3.14'",
+    "python_full_version == '3.11.*'",
+    "python_full_version == '3.10.*'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2e/1d/ae61bca2a99d0735311b7b11b81931279b4a45c74a45034d31b39ad565d1/websocket_client-1.9.1.tar.gz", hash = "sha256:2e0916d2e28ccc82702f2f70aa7a654588e84a5cf2f5914099638b33547f2b7c", size = 82936, upload-time = "2026-08-29T13:45:40.346Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3e/0e/7b514f6eb4bf518a9af0285c1a78297467b95fd7d1ebab08b41f8889ab2f/websocket_client-1.9.1-py3-none-any.whl", hash = "sha256:19a871b81d0022589dd9e8e1b1891e0516d32113837dfb987d7691b6a425a1e2", size = 95460, upload-time = "2026-08-29T13:45:39.255Z" },
 ]
 
 [[package]]
