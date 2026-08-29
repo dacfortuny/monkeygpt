@@ -3,7 +3,7 @@
 An LLM-powered insult sword fighting game. You trade insults and comebacks
 with a randomly-named pirate; a [Mistral](https://mistral.ai/) model
 generates the pirate's insults and comebacks and judges whether yours land.
-Playable from the command line or as a Telegram bot.
+Playable from the command line, as a Streamlit app, or as a Telegram bot.
 
 ## Requirements
 
@@ -38,6 +38,14 @@ Run the following command and follow the instructions:
 
 ```
 uv run python play.py
+```
+
+## Streamlit app
+
+The game also has a browser UI. Run:
+
+```
+uv run streamlit run streamlit_app.py
 ```
 
 ## Telegram bot
@@ -78,6 +86,7 @@ run this project):
 | mistralai             | Apache-2.0   |
 | pandas                | BSD-3-Clause |
 | omegaconf             | BSD-3-Clause |
+| streamlit             | Apache-2.0   |
 | StrEnum               | MIT          |
 | python-telegram-bot   | LGPL-3.0-only |
 

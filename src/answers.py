@@ -10,9 +10,9 @@ class Answer:
 
 
 class AnswerUser(Answer):
-    def __init__(self, insult):
+    def __init__(self, insult, text_input=None):
         super().__init__(insult)
-        self.answer = input("Write your answer.\n")
+        self.answer = text_input if text_input is not None else input("Write your answer.\n")
 
 
 class AnswerPirate(Answer):
