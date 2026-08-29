@@ -6,16 +6,13 @@ from src.utils import get_insults
 
 
 class Insult:
-
     def __init__(self, text_input=None):
         self.insult = text_input or self._generate_insult()
 
     def _generate_insult(self):
         text_generator = MistralTextGenerator()
         prompt = Prompt()
-        prompt.add_sentence(
-            "\nHere you have examples of the insults used in the game:\n-"
-        )
+        prompt.add_sentence("\nHere you have examples of the insults used in the game:\n-")
         insults = get_insults()["insult"].tolist()
         shuffle(insults)
         prompt.add_sentence("\n- ".join(insults))

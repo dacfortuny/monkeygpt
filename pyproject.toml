@@ -1,23 +1,36 @@
-[tool.poetry]
+[project]
 name = "monkeygpt"
 version = "0.1.0"
-description = ""
-authors = ["Didac Fortuny <dacfortuny@gmail.com>"]
+description = "LLM-powered insult sword fighting game."
+authors = [{ name = "Didac Fortuny", email = "dacfortuny@gmail.com" }]
 readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "omegaconf>=2.3.0,<3",
+    "mistralai>=1.10.0,<2",
+    "pandas>=2.2.2,<3",
+    "python-telegram-bot>=21.0.0,<22",
+    "strenum>=0.4.15,<0.5",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-omegaconf = "^2.3.0"
-mistralai = "^0.4.2"
-pandas = "^2.2.2"
-python-telegram-bot = "^21.0.0"
-strenum = "^0.4.15"
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.0.9,<5",
+    "jupytext>=1.16.0,<2",
+    "pytest>=8.3.0,<9",
+    "ruff>=0.6.0,<0.7",
+]
 
+[tool.uv]
+package = false
 
-[tool.poetry.group.dev.dependencies]
-jupyterlab = "^4.0.9"
-jupytext = "^1.16.0"
+[tool.ruff]
+line-length = 100
+target-version = "py39"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

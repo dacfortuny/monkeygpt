@@ -1,7 +1,8 @@
 import random
 from dataclasses import dataclass
-from strenum import StrEnum
 from typing import Optional
+
+from strenum import StrEnum
 
 from src.utils import load_conf, read_txt_file
 
@@ -32,14 +33,11 @@ class Pirate(Player):
     @staticmethod
     def _get_random_pirate_name() -> str:
         paths = load_conf()
-        pirate_types = read_txt_file(
-            paths["PATH_TO_PIRATE_TYPES_ORIGINAL"], as_list=True
-        )
+        pirate_types = read_txt_file(paths["PATH_TO_PIRATE_TYPES_ORIGINAL"], as_list=True)
         pirate_types = pirate_types + read_txt_file(
             paths["PATH_TO_PIRATE_TYPES_GENERATED"], as_list=True
         )
         pirate_types = list(set(pirate_types))
-        random.shuffle(pirate_types)
         return random.choice(pirate_types)
 
 
@@ -57,8 +55,7 @@ def get_pirate_types(subsets=None, as_string=False, seed=31):
             paths["PATH_TO_PIRATE_TYPES_GENERATED"], as_list=True
         )
     pirate_types = list(set(pirate_types))
-    random.seed(seed)
-    random.shuffle(pirate_types)
+    random.Random(seed).shuffle(pirate_types)
     if as_string:
         return ", ".join(pirate_types)
 

@@ -30,10 +30,10 @@ class AnswerPirate(Answer):
         prompt.add_sentence(
             "\n\nHere you have examples of the insults used in the game and SUCCESSFUL answers:"
         )
-        insults = get_insults().sample(frac=1).reset_index(drop=True)
-        insults["sentence"] = (
-            f"\nInsult: {insults['insult']}"
-            f"\nSUCCESSFUL answer: {insults['answer']}\n"
+        insults = get_insults().sample(frac=1).reset_index(drop=True).copy()
+        insults["sentence"] = insults.apply(
+            lambda row: f"\nInsult: {row['insult']}" f"\nSUCCESSFUL answer: {row['answer']}\n",
+            axis=1,
         )
         prompt.add_sentence(f"\n{''.join(insults['sentence'])}")
         prompt.add_sentence("\nGenerate a SUCCESSFUL for the following insult:\n")

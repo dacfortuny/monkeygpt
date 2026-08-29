@@ -6,7 +6,6 @@ from src.utils import get_insults
 
 
 class Assault:
-
     def __init__(self, insult, answer):
         self.insult = insult.insult
         self.answer = answer.answer
@@ -23,38 +22,34 @@ class Assault:
         )
 
         insults = get_insults().sample(frac=1).reset_index(drop=True)
-        insults_good = insults[: int(len(insults) / 2)]
+        insults_good = insults[: int(len(insults) / 2)].copy()
         insults_good["sentence"] = insults_good.apply(
             lambda row: f"EXAMPLE>> Insult: {row['insult']} / "
             f"Answer: {row['answer']} / Success: Yes",
             axis=1,
         )
-        insults_bad = insults[int(len(insults) / 2) :]
+        insults_bad = insults[int(len(insults) / 2) :].copy()
         insults_bad["answer_shifted"] = insults_bad["answer"].shift(1)
-        insults_bad.iloc[0, insults_bad.columns.get_loc("answer_shifted")] = (
-            insults_bad.iloc[-1, insults_bad.columns.get_loc("answer")]
-        )
+        insults_bad.iloc[0, insults_bad.columns.get_loc("answer_shifted")] = insults_bad.iloc[
+            -1, insults_bad.columns.get_loc("answer")
+        ]
         insults_bad["sentence"] = insults_bad.apply(
             lambda row: f"EXAMPLE>> Insult: {row['insult']} / "
             f"Answer: {row['answer_shifted']} / Success: No",
             axis=1,
         )
-        insults = (
-            pd.concat([insults_good, insults_bad]).sample(frac=1).reset_index(drop=True)
-        )
+        insults = pd.concat([insults_good, insults_bad]).sample(frac=1).reset_index(drop=True)
 
         prompt.add_sentence("\n- ".join(insults["sentence"].tolist()))
         prompt.add_sentence(
             "\nFollowing these examples, assess whether the following insult-answer "
             "pair is succesful or not. Return ONLY 'Yes' or 'No':"
         )
-        prompt.add_sentence(
-            f"\nInsult: {self.insult} / Answer: {self.answer} / Success: "
-        )
+        prompt.add_sentence(f"\nInsult: {self.insult} / Answer: {self.answer} / Success: ")
 
         response = text_generator.generate_text(prompt.prompt)
 
-        if response.lower().strip() == "yes":
+        if response.strip().lower().startswith("yes"):
             self.successful_insult = True
 
         return self.successful_insult

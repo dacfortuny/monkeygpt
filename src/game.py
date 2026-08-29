@@ -1,12 +1,9 @@
 import random
-import warnings
 
 from src.answers import AnswerPirate, AnswerUser
 from src.assault import Assault
 from src.insult import Insult
 from src.players import Pirate, User
-
-warnings.filterwarnings("ignore")
 
 
 class Game:
