@@ -16,3 +16,6 @@ __pycache__/
 
 # API key file
 api_key.yaml
+
+# Generated insult cache
+resources/data/insults_generated_cache.csv

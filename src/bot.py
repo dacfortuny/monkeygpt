@@ -1,8 +1,13 @@
 import random
 
 from telegram import Update
-from telegram.ext import (ApplicationBuilder, CommandHandler, ContextTypes,
-                          MessageHandler, filters)
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    ContextTypes,
+    MessageHandler,
+    filters,
+)
 
 from src.answers import AnswerPirate
 from src.insult import Insult
@@ -23,18 +28,15 @@ class MonkeyBot:
 
     @staticmethod
     async def _insult(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
         insult = Insult(" ".join(context.args))
         is_successful_answer = random.getrandbits(1)
         answer = AnswerPirate(insult, is_successful_answer)
-        await context.bot.send_message(
-            chat_id=update.effective_chat.id, text=answer.answer
-        )
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=answer.answer)
 
         if not is_successful_answer:
-            message = f"\n(Good job! You got one on me!)\n"
+            message = "\n(Good job! You got one on me!)\n"
         else:
-            message = f"\n(You'll have to do better next time!)\n"
+            message = "\n(You'll have to do better next time!)\n"
 
         await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
