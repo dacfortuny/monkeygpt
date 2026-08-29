@@ -22,4 +22,6 @@ def test_generate_text_extracts_message_content():
     fake_client.chat.complete.assert_called_once_with(
         model="open-mistral-7b",
         messages=[{"role": "user", "content": "Ahoy"}],
+        temperature=1.0,
+        presence_penalty=0.5,
     )

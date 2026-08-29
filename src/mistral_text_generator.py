@@ -8,11 +8,14 @@ class MistralTextGenerator:
         self.model = model
         self.client = Mistral(api_key=get_mistral_api_key())
 
-    def _call_mistral(self, prompt):
+    def _call_mistral(self, prompt, temperature, presence_penalty):
         return self.client.chat.complete(
-            model=self.model, messages=[{"role": "user", "content": prompt}]
+            model=self.model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+            presence_penalty=presence_penalty,
         )
 
-    def generate_text(self, prompt):
-        response = self._call_mistral(prompt)
+    def generate_text(self, prompt, temperature=1.0, presence_penalty=0.5):
+        response = self._call_mistral(prompt, temperature, presence_penalty)
         return response.choices[0].message.content
