@@ -31,6 +31,8 @@ class MonkeyBot:
         insult = Insult(" ".join(context.args))
         is_successful_answer = random.getrandbits(1)
         answer = AnswerPirate(insult, is_successful_answer)
+        if answer.is_fallback:
+            is_successful_answer = False
         await context.bot.send_message(chat_id=update.effective_chat.id, text=answer.answer)
 
         if not is_successful_answer:

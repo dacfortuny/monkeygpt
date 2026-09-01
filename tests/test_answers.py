@@ -28,3 +28,41 @@ def test_generate_answer_builds_per_row_examples():
     # one line per example.
     assert "dtype: object" not in prompt
     assert "Name: insult" not in prompt
+
+
+def test_generate_answer_retries_on_invalid_response():
+    insult = Insult("Test insult")
+    responses = iter(
+        [
+            "Here's a great option!\n\nWhy this works: it's absurd and self-referential.",
+            "So chickens as well?",
+        ]
+    )
+
+    class FakeGenerator:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def generate_text(self, prompt):
+            return next(responses)
+
+    with patch("src.answers.MistralTextGenerator", FakeGenerator):
+        answer = AnswerPirate(insult, is_valid=True)
+
+    assert answer.answer == "So chickens as well?"
+
+
+def test_generate_answer_falls_back_after_repeated_invalid_responses():
+    insult = Insult("Test insult")
+
+    class FakeGenerator:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def generate_text(self, prompt):
+            return "Option 1: ...\nOption 2: ...\nWhy this works: ..."
+
+    with patch("src.answers.MistralTextGenerator", FakeGenerator):
+        answer = AnswerPirate(insult, is_valid=True)
+
+    assert answer.answer == "I am rubber, you are glue"

@@ -58,6 +58,8 @@ class Game:
         insult = Insult(insult_text)
         answer_succeeded = bool(random.getrandbits(1))
         answer = AnswerPirate(insult, answer_succeeded)
+        if answer.is_fallback:
+            answer_succeeded = False
         round_winner = self._resolve_round("user", answer_succeeded)
         return RoundResult(
             thrower="user",

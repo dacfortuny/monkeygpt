@@ -4,7 +4,7 @@ from src.utils import get_mistral_api_key
 
 
 class MistralTextGenerator:
-    def __init__(self, model="open-mistral-7b"):
+    def __init__(self, model="mistral-small-latest"):
         self.model = model
         self.client = Mistral(api_key=get_mistral_api_key())
 
