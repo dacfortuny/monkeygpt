@@ -7,7 +7,7 @@ Playable from the command line, as a Streamlit app, or as a Telegram bot.
 
 ## Requirements
 
-- Python >=3.9
+- Python >=3.11
 - [uv](https://docs.astral.sh/uv/)
 - A [Mistral API key](https://console.mistral.ai/)
 
